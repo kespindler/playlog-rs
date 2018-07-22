@@ -29,12 +29,10 @@ extern crate playlog;
 
 fn main() {
     /// It's not implemented yet, but configuring it might look something like this.
-    /// setupLogger(module_path!())
+    /// setup_logger(module_path!())
     ///     .level(Level::Info)
     ///     .addHandler(JsonHandler(stdout()))
-    /// 
-    /// Note, I just wanted a JsonLogger. I wouldn't advocate that Json be the default
-    /// handler if this were turned into a library.
+
     info!("request received",
         a: 1,
         b: 2
