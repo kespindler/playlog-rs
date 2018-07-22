@@ -43,7 +43,7 @@ impl Serialize for Record {
         map.serialize_entry("ts", &format!("{:?}", Utc::now()))?;
         map.serialize_entry("level", &format!("{}", self.level))?;
         map.serialize_entry("name", &self.name)?;
-        // TODO make hostname & pid lazy_static so we don't compute every time.
+        // TODO make hostname lazy_static so we don't compute every time.
         map.serialize_entry("host", &get_hostname())?;
         map.serialize_entry("pid", &process::id())?;
         map.serialize_entry("msg", &self.message)?;
@@ -55,7 +55,7 @@ impl Serialize for Record {
 
 impl Handler for JsonHandler {
     fn write(&self, record: &Record) -> () {
-        let s = serde_json::to_string(record).unwrap();
+        let s = serde_json::to_string(record).unwrap() + "\n";
         stdout().write(s.as_bytes());
     }
 }

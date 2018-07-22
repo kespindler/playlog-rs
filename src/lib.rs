@@ -56,13 +56,12 @@ fn __log(name: &str, level: Level, message: &str, args: Args) {
     });
 }
 
-
+/// Generic log macro.
+/// name: the name of the logger (defaults to `module_path!()`)
+/// level: the logging level
+/// message: the event name
+/// args: data to add to the log statement
 macro_rules! log {
-    /// Generic log macro.
-    /// name: the name of the logger (defaults to `module_path!()`)
-    /// level: the logging level
-    /// message: the event name
-    /// args: data to add to the log statement
     ( $name:expr, $level:expr, $message:expr, $args:expr ) => {
         {
             if __get_log_level($name) >= $level {
